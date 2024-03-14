@@ -14,9 +14,9 @@ TOTAL_NUMBER_OF_TASKS = response.json()
 def employee_list(employee_id):
     """ Args: employee_id (_type_):"""
     if response.status_code == 200:
-        print(f"Employee: {EMPLOYEE_NAME['EMPLOYEE_NAME']},
-              is done with tasks({NUMBER_OF_DONE_TASKS['NUMBER_OF_DONE_TASKS']}/
-              {TOTAL_NUMBER_OF_TASKS['TOTAL_NUMBER_OF_TASKS']}):")
+        print(f"Employee: {[EMPLOYEE_NAME]},
+              is done with tasks({[NUMBER_OF_DONE_TASKS]}/
+              {[TOTAL_NUMBER_OF_TASKS]}):")
 
 if __name__ == '__main__':
     Get_Todo().todo
