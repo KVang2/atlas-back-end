@@ -6,11 +6,15 @@ import urllib
 import requests
 
 
-url = 'https://jsonplaceholder.typicode.com'
-TODO_list = [{"employee_id": 1, "title": "NUMBER_OF_DONE_TASKS",
-              "content": "TOTAL_NUMBER_OF_TASKS"}]
-
-
 def employee_list(employee_id):
     """ Args: employee_id (_type_):"""
-    print("Employee EMPLOYEE_NAME is done with tasks(NUMBER_OF_DONE_TASKS/TOTAL_NUMBER_OF_TASKS):, employee")
+    url = 'https://jsonplaceholder.typicode.com/{id}'
+    response = requests.get(url)
+    if response.status == 200:
+        data = response.json()
+        print(f"Employee: {data['EMPLOYEE_NAME']}, is done with tasks(
+              {data['NUMBER_OF_DONE_TASKS']}/{data['TOTAL_NUMBER_OF_TASKS']}):")
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
