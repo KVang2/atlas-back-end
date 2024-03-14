@@ -6,13 +6,17 @@ import requests
 
 url = 'https://jsonplaceholder.typicode.com/{employee_id}'
 response = requests.get(url)
-data = response.json()
+EMPLOYEE_NAME = response.json()
+NUMBER_OF_DONE_TASKS = response.json()
+TOTAL_NUMBER_OF_TASKS = response.json()
+
 
 def employee_list(employee_id):
     """ Args: employee_id (_type_):"""
     if response.status_code == 200:
-        print(f"Employee: {data['EMPLOYEE_NAME']}, is done with tasks({data['NUMBER_OF_DONE_TASKS']}/{data['TOTAL_NUMBER_OF_TASKS']}):")
-
+        print(f"Employee: {EMPLOYEE_NAME['EMPLOYEE_NAME']},
+              is done with tasks({NUMBER_OF_DONE_TASKS['NUMBER_OF_DONE_TASKS']}/
+              {TOTAL_NUMBER_OF_TASKS['TOTAL_NUMBER_OF_TASKS']}):")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    Get_Todo().todo
