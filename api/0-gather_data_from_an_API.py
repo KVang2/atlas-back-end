@@ -9,7 +9,7 @@ import sys
 class Get_Todo():
     """ Class for employee info"""
 
-    def employee_list(self):
+    def todo(self):
         """ To grab employee info"""
         args = sys.argv
         user_id = args[1]
@@ -22,7 +22,7 @@ class Get_Todo():
 
         EMPLOYEE_NAME = user_json["name"]
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
-                                   if str(task["userId"]) == (user_id)
+                                   if str(task["userId"]) == user_id
                                    and task["completed"] is True)
         TOTAL_NUMBER_OF_TASKS = sum(1 for task in todos_json
                                     if str(task["userId"]) == user_id)
@@ -34,5 +34,5 @@ class Get_Todo():
                 print(f"\t {task['title']}")
 
 
-if __name__ == '__main__':
-    Get_Todo().employee_list()
+if __name__ == "__main__":
+    Get_Todo().todo()
