@@ -9,7 +9,7 @@ import sys
 class Get_Todo():
     """ Class for employee info"""
 
-    def todo(self):
+    def employee_list(self):
         """ To grab employee info"""
         args = sys.argv
         user_id = args[1]
@@ -35,4 +35,4 @@ class Get_Todo():
 
 
 if __name__ == "__main__":
-    Get_Todo().todo()
+    Get_Todo().employee_list()
