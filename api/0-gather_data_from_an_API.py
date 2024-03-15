@@ -35,4 +35,4 @@ class Get_Todo():
 
 
 if __name__ == '__main__':
-    Get_Todo().todo()
+    Get_Todo().employee_list()
