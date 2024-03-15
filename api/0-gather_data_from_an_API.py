@@ -20,7 +20,7 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        EMPLOYEE_NAME = user_json("name")
+        EMPLOYEE_NAME = user_json["name"]
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
                                    if str(task["userId"]) == str(user_id)
                                    and task["completed"] is True)
