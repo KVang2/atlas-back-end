@@ -24,6 +24,8 @@ class Get_Todo():
         EMPLOYEE_NAME = user_json["username"]
         user_list = [task for task in todos_json
                      if task["userId"] == user_id]
+    
+        user_list.sort(key=lambda task: task["title"])
 
         fields = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         # writing to csv file
