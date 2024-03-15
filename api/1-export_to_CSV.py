@@ -22,6 +22,7 @@ class Get_Todo():
         todos_json = todos_result.json()
 
         EMPLOYEE_NAME = user_json["name"]
+        USERNAME = EMPLOYEE_NAME
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
                                    if str(task["userId"]) == user_id
                                    and task["completed"] is True)
@@ -33,9 +34,6 @@ class Get_Todo():
 
 
         fields = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        # Define CSV file path
-        csv_file_path = 'USER_ID.csv'
-
         # writing to csv file
         csv_file_path = f'{user_id}.csv'
         with open(csv_file_path, 'w', newline='') as csvfile:
