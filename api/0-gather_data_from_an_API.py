@@ -22,16 +22,16 @@ class Get_Todo():
 
         EMPLOYEE_NAME = user_json["name"]
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
-                                   if str(task["userId"]) == str(user_id)
+                                   if str(task["userId"]) == (user_id)
                                    and task["completed"] is True)
         TOTAL_NUMBER_OF_TASKS = sum(1 for task in todos_json
-                                    if str(task["userId"]) == str(user_id))
+                                    if str(task["userId"]) == user_id)
 
         print(f"Employee {EMPLOYEE_NAME} is done with tasks"
               f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
         for task in todos_json:
             if str(task["userId"]) == user_id and task["completed"] is True:
-                print(f"|t {task['title']}")
+                print(f"\t {task['title']}")
 
 
 if __name__ == '__main__':
