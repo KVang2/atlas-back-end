@@ -22,7 +22,6 @@ class Get_Todo():
         todos_json = todos_result.json()
 
         EMPLOYEE_NAME = user_json["name"]
-        USERNAME = EMPLOYEE_NAME
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
                                    if str(task["userId"]) == user_id
                                    and task["completed"] is True)
@@ -43,8 +42,8 @@ class Get_Todo():
             #writing data
             for task in todos_json:
                 if str(task['userId']) == user_id:
-                    completed_status = "completed" if task["completed"] else "Not Completed"
-                    writer.writerow([task["userId"], completed_status, task["title"]])
+                    completed_status = "True" if task["completed"] else "False"
+                    writer.writerow([task["userId"], EMPLOYEE_NAME, completed_status, task["title"], EMPLOYEE_NAME])
 
         print(f"Data exported to {csv_file_path}")
 
