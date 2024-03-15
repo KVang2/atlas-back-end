@@ -23,7 +23,7 @@ class Get_Todo():
 
         EMPLOYEE_NAME = user_json["username"]
         user_list = [task for task in todos_json
-             if task["userId"] == user_id]
+            if task["userId"] == user_id]
 
         fields = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         # writing to csv file
@@ -37,10 +37,11 @@ class Get_Todo():
                 if str(task['userId']) == user_id:
                     completed_status = "True" if task["completed"] else "False"
                     writer.writerow([task["userId"],
-                        EMPLOYEE_NAME, completed_status, 
-                        task["title"]])
+                                     EMPLOYEE_NAME, completed_status,
+                                     task["title"]])
 
             print(f"Data exported to {csv_file_path}")
+
 
 if __name__ == "__main__":
     Get_Todo().employee_list()
