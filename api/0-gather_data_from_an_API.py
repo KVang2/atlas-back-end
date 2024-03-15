@@ -16,10 +16,9 @@ class Get_Todo():
         url = 'https://jsonplaceholder.typicode.com/'
 
         user_result = requests.get(url + "users/" + user_id)
-        todos_result = requests.get(url + "todo")
+        todos_result = requests.get(url + "todos")
         user_json = user_result.json()
-        todos_json = todo_result.json()
-
+        todos_json = todos_result.json()
 
         EMPLOYEE_NAME = user.json("name")
         NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json
