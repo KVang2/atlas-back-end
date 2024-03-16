@@ -34,11 +34,10 @@ class Get_Todo():
 
             # writing data
             for task in user_list:
-                if str(task['userId']) == user_id:
-                    completed_status = "True" if task["completed"] else "False"
-                    writer.writerow([task["userId"],
-                                     EMPLOYEE_NAME, completed_status,
-                                     task["title"]])
+                completed_status = "True" if task["completed"] else "False"
+                writer.writerow([task["userId"],
+                                 EMPLOYEE_NAME, completed_status,
+                                 task["title"]])
 
             print(f"Data exported to {csv_file_path}")
 
