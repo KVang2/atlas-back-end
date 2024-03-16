@@ -13,7 +13,8 @@ class Get_Todo():
     def employee_list(self):
         """ To grab employee info"""
         args = sys.argv
-        user_id = args[1]
+        if len(args) != 2:
+            user_id = args[1]
         url = 'https://jsonplaceholder.typicode.com/'
 
         user_result = requests.get(url + "users/" + user_id)
@@ -39,9 +40,6 @@ class Get_Todo():
                 writer.writerow([task["userId"],
                                  EMPLOYEE_NAME, completed_status,
                                  task["title"]])
-
-            print(f"Data exported to {csv_file_path}")
-
 
 if __name__ == "__main__":
     Get_Todo().employee_list()
