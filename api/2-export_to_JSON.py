@@ -19,3 +19,22 @@ class Get_Todo():
         todos_result = requests.get(url + "todos")
         user_json = user_result.json()
         todos_json = todos_result.json()
+
+        employee_info = []
+        for task in todos_json:
+            if str(task["userId"]) == user_id:
+                task_data = {
+                     "task": task['title'],
+                    "username": user_json["username"],
+                    "completed": task['completed']
+                }
+                employee_info.append(task_data)
+
+        output_data = {user_id: employee_tasks}
+
+        with open(f"{user_id}.json", "w") as json_file:
+            json.dump(output_data, json_file, indent=4)
+
+
+if __name-- == "__main__":
+    Get_Todo().employee_list()
