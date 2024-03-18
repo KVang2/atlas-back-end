@@ -4,6 +4,7 @@ Returns information on TODO list progress for Employee ID
 """
 import requests
 import sys
+import json
 
 
 class Get_Todo():
@@ -20,21 +21,21 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        employee_info = []
-        for task in todos_json:
-            if str(task["userId"]) == user_id:
-                task_data = {
-                     "task": task['title'],
-                    "username": user_json["username"],
-                    "completed": task['completed']
-                }
-                employee_info.append(task_data)
+        employee_todos = [todo for todo in todos_json if todo['userId'] == int(user_id)]
 
-        output_data = {user_id: employee_tasks}
+        data = {
+            "USER_ID":[
+                {
+                    "task": todo['title'],
+                    "completed": todo['completed'],
+                    "username": user_json['name']
+                } for todo in employee_todos
+            ]
+        }
 
-        with open(f"{user_id}.json", "w") as json_file:
-            json.dump(output_data, json_file, indent=4)
+        with open('data.json', 'w') as file:
+            json.dump(data, file, indent=4)
 
 
-if __name-- == "__main__":
+if __name__ == "__main__":
     Get_Todo().employee_list()
