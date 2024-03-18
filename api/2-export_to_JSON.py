@@ -21,10 +21,11 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        employee_todos = [todo for todo in todos_json if todo['userId'] == int(user_id)]
+        employee_todos = [todo for todo in todos_json
+                           if todo['userId'] == int(user_id)]
 
         data = {
-            "USER_ID":[
+            "USER_ID": [
                 {
                     "task": todo['title'],
                     "completed": todo['completed'],
