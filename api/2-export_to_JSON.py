@@ -21,7 +21,7 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-      # Filter tasks by user ID
+        # Filter tasks by user ID
         user_tasks = [{"task": task["title"], "completed": task["completed"],
                        "username": user_json["username"]}
                       for task in todos_json
