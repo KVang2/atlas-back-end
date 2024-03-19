@@ -32,6 +32,7 @@ class Get_Todo():
         with open(filename, mode='w') as file:
             json.dump(user_dict, file)
 
+        print("import requests\nimport sys\nimport json")
 
 if __name__ == "__main__":
     Get_Todo().employee_list()
