@@ -21,18 +21,21 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        # Filter tasks by user ID
-        user_tasks = [{"task": task["title"], "completed": task["completed"],
-                       "username": user_json["username"]}
-                      for task in todos_json
-                      if str(task["userId"]) == user_id]
-        user_dict = {user_json["id"]: user_tasks}
+ # Filter tasks by user ID
+        user_tasks = []
+        for task in todos_json:
+            if str(task["userId"]) == user_id:
+                user_tasks.append({
+                    "task": task["title"],
+                    "completed": task["completed"],
+                    "username": user_json["username"]
+                })
 
+        # Write user tasks to a JSON file
+        user_dict = {user_json["id"]: user_tasks}
         filename = f"{user_id}.json"
         with open(filename, mode='w') as file:
             json.dump(user_dict, file)
-
-        print("import requests\nimport sys\nimport json")
 
 
 if __name__ == "__main__":
