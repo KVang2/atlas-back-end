@@ -22,22 +22,14 @@ class Get_Todo():
         todos_json = todos_result.json()
 
         # Filter tasks by user ID
-        params = {"userId": user_id}
-        employee_todos = requests.get(url + "todos", params).json()
+        user_tasks = [{"task": task["title"], "completed": task["completed"], 
+                       "username": user_json["username"]}] 
+        for task in todos_json if str(task["userId"]) == user_id]
+        user_dict = {user_json["id"]: user_tasks}
 
-        data = {}
-        user_id: [
-            {
-                "task": todo['title'],
-                "completed": todo['completed'],
-                "username": user_json['name']
-            }
-            for todo in employee_todos
-                ]
-        }
-
-        with open("{}.json".format(user_id), 'w') as file:
-            json.dump(data_to_export, file, indent=4)
+        filename = f"{user_id}.json"
+        with open(filename, mode='w') as file:
+            json.dump(user_dict, file)
 
 
 if __name__ == "__main__":
