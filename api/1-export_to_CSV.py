@@ -25,16 +25,15 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        EMPLOYEE_NAME = user_json["name"]
-        user_tasks = [task for task in todos_json 
-                      if task["userId"] == user_id]
+        EMPLOYEE_NAME = user_json["username"]
+        user_tasks = [task for task in todos_json
+                   if task["userId"] == user_id]
 
         fields = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         # writing to csv file
         csv_file_path = f'{user_id}.csv'
-        with open(csv_file_path, 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-            writer.writerow(fields)
+        with open(csv_file_path, 'w', newline='') as file:
+            writer = csv.writer(file, quoting=csv.QUOTE_ALL)
 
             # writing data
             for task in user_tasks:
@@ -42,7 +41,3 @@ class Get_Todo():
                 writer.writerow([user_id,
                                  EMPLOYEE_NAME, completed_status,
                                  task["title"]])
-
-
-if __name__ == "__main__":
-    Get_Todo().employee_list()
