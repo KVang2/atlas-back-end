@@ -2,9 +2,9 @@
 """
 Returns information on TODO list progress for Employee ID
 """
+import csv
 import requests
 import sys
-import csv
 
 
 args = sys.argv
