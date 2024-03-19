@@ -11,11 +11,30 @@ class Get_Todo():
 
     def employee_list(self):
         """ To grab employee info"""
-        args = sys.argv
-        user_id = args[1]
         url = 'https://jsonplaceholder.typicode.com/'
 
-        user_result = requests.get(url + "users/" + user_id)
-        todos_result = requests.get(url + "todos")
-        user_json = user_result.json()
-        todos_json = todos_result.json()
+        users_response = requests.get(url + "users")
+        todos_response = requests.get(url + "todos")
+        users = users_response.json()
+        todos = todos_response.json()
+
+        # Constructing user tasks dictionary
+        user_tasks_dict = {}
+        for user in users:
+            user_tasks = []
+            for task in todos:
+                if task["userId"] == user["id"]:
+                    user_tasks.append({
+                        "task": task["title"],
+                        "completed": task["completed"],
+                        "username": user["username"]
+                    })
+            user_tasks_dict[user["id"]] = user_tasks
+
+        # Exporting user info to JSON file
+        with open("todo_all_employees.json", "w") as file:
+            json.dump(user_tasks_dict, file)
+
+
+if __name__ == "__main__":
+    Get_Todo().employee_list()
