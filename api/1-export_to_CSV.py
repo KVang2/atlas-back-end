@@ -14,18 +14,21 @@ class Get_Todo():
         """ To grab employee info"""
         args = sys.argv
         if len(args) != 2:
-            user_id = args[1]
+            print("Usage: python script_name.py USER_ID")
+            sys.exit(1)
+
+        user_id = int(args[1])
         url = 'https://jsonplaceholder.typicode.com/'
 
-        user_result = requests.get(url + "users/" + user_id)
+        user_result = requests.get(url + "users/" + str(user_id))
         todos_result = requests.get(url + "todos")
         user_json = user_result.json()
         todos_json = todos_result.json()
 
-        EMPLOYEE_NAME = user_json["username"]
+        EMPLOYEE_NAME = user_json["name"]
         user_id = int(user_id)
-        user_list = [task for task in todos_json
-                     if task["userId"] == user_list]
+        user_tasks = [task for task in todos_json
+                     if task["userId"] == user_id]
 
         fields = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         # writing to csv file
@@ -35,9 +38,9 @@ class Get_Todo():
             writer.writerow(fields)
 
             # writing data
-            for task in user_list:
+            for task in user_tasks:
                 completed_status = "True" if task["completed"] else "False"
-                writer.writerow([task["userId"],
+                writer.writerow([user_id,
                                  EMPLOYEE_NAME, completed_status,
                                  task["title"]])
 

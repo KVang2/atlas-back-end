@@ -21,8 +21,9 @@ class Get_Todo():
         user_json = user_result.json()
         todos_json = todos_result.json()
 
+        # Filter tasks by user ID
         employee_todos = [todo for todo in todos_json
-                           if todo['userId'] == int(user_id)]
+                          if todo['userId'] == int(user_id)]
 
         data = {
             "USER_ID": [
@@ -33,8 +34,8 @@ class Get_Todo():
                 } for todo in employee_todos
             ]
         }
-        filename = "data.json"
 
+        filename = f"{user_id}.json"
         with open('data.json', 'w') as file:
             json.dump(data, file)
 
