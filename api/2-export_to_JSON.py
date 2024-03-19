@@ -33,9 +33,10 @@ class Get_Todo():
                 } for todo in employee_todos
             ]
         }
+        filename = "data.json"
 
         with open('data.json', 'w') as file:
-            json.dump(data, file, indent=4)
+            json.dump(data, file)
 
 
 if __name__ == "__main__":
