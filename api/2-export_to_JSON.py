@@ -22,9 +22,10 @@ class Get_Todo():
         todos_json = todos_result.json()
 
         # Filter tasks by user ID
-        user_tasks = [{"task": task["title"], "completed": task["completed"], 
-                       "username": user_json["username"]} 
-                       for task in todos_json if str(task["userId"]) == user_id]
+        user_tasks = [{"task": task["title"], "completed": task["completed"],
+                       "username": user_json["username"]}
+        for task in todos_json
+            if str(task["userId"]) == user_id]
         user_dict = {user_json["id"]: user_tasks}
 
         filename = f"{user_id}.json"
