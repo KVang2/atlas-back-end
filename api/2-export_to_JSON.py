@@ -2,9 +2,9 @@
 """
 Returns information on TODO list progress for Employee ID
 """
+import json
 import requests
 import sys
-import json
 
 
 class Get_Todo():
