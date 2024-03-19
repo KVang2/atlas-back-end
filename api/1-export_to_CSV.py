@@ -26,7 +26,6 @@ class Get_Todo():
         todos_json = todos_result.json()
 
         EMPLOYEE_NAME = user_json["name"]
-        user_id = int(user_id)
         user_tasks = [task for task in todos_json 
                       if task["userId"] == user_id]
 
